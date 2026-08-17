@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h1 class="post-title">{{ page.title }}</h1>
+  <div class="post-meta" style="color: #666; margin-bottom: 20px;">
+    <span>📅 {{ page.date | date: "%B %d, %Y" }}</span> | 
+    <span>📌 {{ page.source }}</span>
+  </div>
+  <hr>
+  <div class="post-content">
+    {{ content }}
+  </div>
+  <p style="margin-top: 30px;"><a href="{{ '/' | relative_url }}">← Back to All News / ወደ ዋናው ገጽ</a></p>
+</article>
