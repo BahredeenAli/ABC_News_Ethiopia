@@ -1,0 +1,61 @@
+---
+layout: default
+---
+
+<div style="text-align: center; margin-bottom: 25px;">
+  <h1>ABC News Ethiopia</h1>
+  <p>Automated Tri-Lingual News Engine</p>
+
+  <div style="margin-top: 15px;">
+    <button onclick="showLang('am')" id="btn-am" class="lang-btn active">አማርኛ</button>
+    <button onclick="showLang('om')" id="btn-om" class="lang-btn">Afaan Oromoo</button>
+    <button onclick="showLang('en')" id="btn-en" class="lang-btn">English</button>
+  </div>
+</div>
+
+<hr>
+
+<div id="news-feed">
+  {% for post in site.posts %}
+    <article class="post-item lang-group-{{ post.lang }}" style="margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+      <span style="background: #0066cc; color: white; padding: 2px 8px; border-radius: 3px; font-size: 11px; text-transform: uppercase;">{{ post.categories | join: ", " }}</span>
+      <h2 style="margin: 10px 0 5px 0;"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      <p style="color: #777; font-size: 13px;">📅 {{ post.date | date: "%B %d, %Y" }} | 📌 {{ post.source }}</p>
+      <div>{{ post.excerpt }}</div>
+    </article>
+  {% endfor %}
+</div>
+
+<script>
+function showLang(lang) {
+  const allPosts = document.querySelectorAll('.post-item');
+  allPosts.forEach(el => el.style.display = 'none');
+
+  const selectedPosts = document.querySelectorAll('.lang-group-' + lang);
+  selectedPosts.forEach(el => el.style.display = 'block');
+
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  document.getElementById('btn-' + lang).classList.add('active');
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  showLang('am');
+});
+</script>
+
+<style>
+.lang-btn {
+  padding: 8px 18px;
+  margin: 0 4px;
+  border: 2px solid #0066cc;
+  background: white;
+  color: #0066cc;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.lang-btn.active {
+  background: #0066cc;
+  color: white;
+}
+</style>
