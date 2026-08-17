@@ -1,0 +1,28 @@
+title: "ABC News Ethiopia"
+description: "Tri-Lingual Automated News Platform"
+theme: minima
+
+# Force Jekyll to build posts inside nested language folders
+include:
+  - _posts/am
+  - _posts/om
+  - _posts/en
+
+permalink: /:lang/:categories/:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: "_posts/am"
+    values:
+      layout: "post"
+      lang: "am"
+  - scope:
+      path: "_posts/om"
+    values:
+      layout: "post"
+      lang: "om"
+  - scope:
+      path: "_posts/en"
+    values:
+      layout: "post"
+      lang: "en"
